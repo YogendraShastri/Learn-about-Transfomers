@@ -30,4 +30,33 @@ simple, easy-to-understand explanations
 <img width="520" height="760" alt="image" src="https://github.com/user-attachments/assets/65c1cbb2-f59f-41e3-8722-243efc62237a" />
 </div>
 
-## 
+## Word Embeddings 
+- Machine can't understand words or text like humans do, that's why we need to convert the words in to numbers, but you cant just assign any number to an word, like if u assign car as 1 and bicycle as 0, your model wont understand the relationship or meaning.
+- Neural networks are trained on huge text datasets (like Wikipedia, books, and the internet).During training, the model learns patterns and converts words into vectors (lists of numbers).
+- In word embedding, each word is represented as list of numbers (vector). like cow, can have many many semantic attributes like, has_legs: Yes, is_object: No, breath: Yes, ... and so on. These attributes converted into numbers, forming a vector that describes the concept of “cow”.
+- Words with similar meanings have vectors close to each other in this high-dimensional space.
+
+### High-dimensional space :
+- These vectors don’t live in 2D or 3D but in hundreds or thousands of dimensions.
+- like Google’s Word2Vec has 300D (dimensions). GPT has approx ~12,000 dimensions.
+- Each dimension represents some semantic aspect of words, but we don’t know exactly what each one means.
+- Still, words with similar meanings end up close together in this space.
+
+#### Word Embedding Techniques & Types
+<div align='center'>
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/aca54762-861c-429f-bdff-650631f25e35" />
+<p align='center'>Image taken from geeksforgeeks</p>
+</div>
+
+## Contextual Word Embeddings
+- Static embeddings (like **Word2Vec, GloVe**) give one fixed vector per word. But words can have multiple meanings depending on context.
+  - **Example**: "dish" → could mean rice dish, Biryani dish, or dish TV.
+- ChatGPT and similar systems need embeddings that change with **context → contextual embeddings**.
+- In **Contextual embeddings**, the meaning of a word shifts based on surrounding words. The model modifies the base (static) embedding by adding directional vectors for context.
+
+```bash
+- sentence1 : I Like indian food.
+- sentence2 : I want to eat ?
+
+chances of suggesting Biryani is high, than Pizza as context is about indian food.
+```
