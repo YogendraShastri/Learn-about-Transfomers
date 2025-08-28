@@ -24,13 +24,13 @@ simple, easy-to-understand explanations
 <img width="324" height="536" alt="image" src="https://github.com/user-attachments/assets/20852895-cdb2-44be-8ccf-ebda388a4b48" />
 </div>
 
-## Transformers Architecture Diagram:
-- The Transformer Model - MachineLearningMastery.comThe transformer architecture is a neural network that excels at sequential data by using attention mechanisms and positional encoding instead of recurrence
-<div align='center'>
-<img width="520" height="760" alt="image" src="https://github.com/user-attachments/assets/65c1cbb2-f59f-41e3-8722-243efc62237a" />
-</div>
+## Before learning about transformer lets understand some core topics:
+- Word Embeddings
+- High Dimensinal Space
+- Contextual or sentence embedding
+- etc...
 
-## Word Embeddings 
+### Word Embeddings 
 - Machine can't understand words or text like humans do, that's why we need to convert the words in to numbers, but you cant just assign any number to an word, like if u assign car as 1 and bicycle as 0, your model wont understand the relationship or meaning.
 - Neural networks are trained on huge text datasets (like Wikipedia, books, and the internet).During training, the model learns patterns and converts words into vectors (lists of numbers).
 - In word embedding, each word is represented as list of numbers (vector). like cow, can have many many semantic attributes like, has_legs: Yes, is_object: No, breath: Yes, ... and so on. These attributes converted into numbers, forming a vector that describes the concept of “cow”.
@@ -42,13 +42,13 @@ simple, easy-to-understand explanations
 - Each dimension represents some semantic aspect of words, but we don’t know exactly what each one means.
 - Still, words with similar meanings end up close together in this space.
 
-#### Word Embedding Techniques & Types
+### Word Embedding Techniques & Types
 <div align='center'>
 <img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/aca54762-861c-429f-bdff-650631f25e35" />
 <p align='center'>Image taken from geeksforgeeks</p>
 </div>
 
-## Contextual Word Embeddings
+### Contextual Word Embeddings
 - Static embeddings (like **Word2Vec, GloVe**) give one fixed vector per word. But words can have multiple meanings depending on context.
   - **Example**: "dish" → could mean rice dish, Biryani dish, or dish TV.
 - ChatGPT and similar systems need embeddings that change with **context → contextual embeddings**.
@@ -60,3 +60,20 @@ simple, easy-to-understand explanations
 
 chances of suggesting Biryani is high, than Pizza as context is about indian food.
 ```
+
+## Transformers Architecture Diagram:
+- The Transformer Model - MachineLearningMastery.comThe transformer architecture is a neural network that excels at sequential data by using attention mechanisms and positional encoding instead of recurrence
+<div align='center'>
+<img width="520" height="760" alt="image" src="https://github.com/user-attachments/assets/65c1cbb2-f59f-41e3-8722-243efc62237a" />
+</div>
+
+- transformer is devided into two parts:
+- Left Part : **Encoder** processes input.
+- Right Part : **Decoder** generates output.
+
+## Input Embedding
+- **Input Embedding**: Converts each token into a vector. so input embedding is nothing but word embedding which we saw above.
+
+## Positional Encoding:
+- **Positional Encoding**: Adds information about token positions since the Transformer doesn’t have recurrence like RNNs.
+
