@@ -75,5 +75,39 @@ chances of suggesting Biryani is high, than Pizza as context is about indian foo
 - **Input Embedding**: Converts each token into a vector. so input embedding is nothing but word embedding which we saw above.
 
 ## Positional Encoding:
-- **Positional Encoding**: Adds information about token positions since the Transformer doesn’t have recurrence like RNNs.
+- Transformers don’t have recurrence (like **RNNs**) or convolution (like **CNNs**), so by default, they don’t know the position of tokens. 
+- In simple words, how does model know which token occured first, so to solve this, we add **positional encoding (PE)** to input embeddings.
+- After converting tokens into embeddings E, we add a fixed or learned positional vector P to each embedding:
+
+### Example :
+- For the sentence “I love NLP”:
+<div align='center'>
+<img width="678" height="246" alt="image" src="https://github.com/user-attachments/assets/e61c6a18-9d1b-45a7-9a88-90b2ce180849" />
+</div>
+
+- Commonly used positional encoding is **Sinusoidal Encodings**.
+
+## Masked Multi-Head Attention
+Imagine you're reading a paragraph and trying to understand the meaning of one word, say **“bank”**.
+- Sometimes, **“bank”** refers to a **river bank**.
+- Sometimes, it refers to a **financial bank**.
+
+How do you know which meaning is right?
+You look around — the context. That’s what attention does: “Which other words should I look at to understand this word better?”.
+But there's a catch, One attention head can focus on one type of relationship only.
+
+- What if we want to capture multiple relationships at the same time?
+- So for that Solution is → **Multi-Head Attention**
+  
+Multiple **“attention heads”** work in parallel —
+- One head might focus on nearby words
+- Another on verbs
+- Another on long-distance dependencies
+
+Then we combine everything for a richer understanding.
+
+### Multi-Head Attention uses 3 key matrices:
+1. **Query (Q)**
+2. **Key (K)**
+3. **Value (V)**
 
