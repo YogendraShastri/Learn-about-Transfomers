@@ -111,3 +111,35 @@ Then we combine everything for a richer understanding.
 2. **Key (K)**
 3. **Value (V)**
 
+**Are Q, K, and V Calculated During Training?**
+- Yes — but not directly learned like weights & biases. Instead, we learn three weight matrices: **Wq, Wk, Wv**
+- These are trainable parameters, just like weights in a linear layer.
+- [**Note** : inference is the process of applying a trained model to new, unseen data to generate outputs]
+- Then, during both training and inference, for each input token embedding X, we calculate:
+
+$$
+Q = X \cdot Wq
+$$
+
+$$
+K = X \cdot Wk
+$$
+
+$$
+V = X \cdot Wv
+$$
+
+**Where:**
+\( X \) = input matrix  
+\( Wq \) = weight matrix for **Query**   
+\( Wk \) = weight matrix for **Key**  
+\( Wv \) = weight matrix for **Value**
+
+- Weights learned during training.
+- Q, K, V vectors → computed on the fly from inputs during both training and inference.
+
+<div align='center'>
+<img width="860" height="610" alt="image" src="https://github.com/user-attachments/assets/7af74174-963e-4061-a6a8-9d30c38d1d9a" />
+</div>
+
+## Feed Forward
