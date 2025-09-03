@@ -106,11 +106,7 @@ Multiple **“attention heads”** work in parallel —
 
 Then we combine everything for a richer understanding.
 
-### Multi-Head Attention uses 3 key matrices:
-1. **Query (Q)**
-2. **Key (K)**
-3. **Value (V)**
-
+### 1. Queries (Q), Keys(K), and Values (V) Calculation:
 **Are Q, K, and V Calculated During Training?**
 - Yes — but not directly learned like weights & biases. Instead, we learn three weight matrices: **Wq, Wk, Wv**
 - These are trainable parameters, just like weights in a linear layer.
@@ -140,6 +136,49 @@ $$
 
 <div align='center'>
 <img width="860" height="610" alt="image" src="https://github.com/user-attachments/assets/7af74174-963e-4061-a6a8-9d30c38d1d9a" />
-</div>
+</div
+
+### 2. Compute Similarity Scores
+- The attention scores are computed by taking the dot product of the **Query matrix (Q)** with the transpose of the **Key matrix (K)** for each head.
+- This calculates a measure of similarity between each query and all keys. A higher dot product indicates greater similarity.
+
+$$
+S = QK^\top
+$$
+
+**Where:**
+- S = similarity score matrix  
+- Q = query matrix  
+- K^T = transpose of the key matrix  
+- Each element Sij represents the similarity between the i'th query and the j'th key.
+
+### 3. Scale the Scores
+- The resulting dot products are then scaled by dividing by the square root of the dimensionality of the keys sqrt(dk). This scaling helps to prevent the dot products from becoming too large, which can lead to vanishing gradients during training.
+
+$$
+S = \frac{QK^\top}{\sqrt{d_k}}
+$$
+
+### 4. Applying Softmax
+- The Softmax function converts raw scores (called logits) into probabilities that sum up to 1. these probabilities represent the **"attention"** or **"focus"** that a query places on each key.
+- for example, i love ai, how much attention each word get, is given by softmax, like i get 65% attention, love get 25% & 'AI' only 9%.
+
+$$
+A = \text{softmax}(S)
+$$
+
+<img width="580" height="380" alt="image" src="https://github.com/user-attachments/assets/58b3b94c-137f-492a-96db-f6aee31dd1d9" />
+
+
+### 5. Weighted Sum of Values:
+- Finally, the attention probabilities are applied to calculate a weighted sum of the Value matrix (V).
+- This sum produces a context-sensitive output for each head, with each value contributing in proportion to its attention score.
+
+$$
+\text{Output} = A \cdot V
+$$
 
 ## Feed Forward
+- The FFN comes after the attention mechanism and is responsible for transforming and enriching the contextual embeddings.
+- The FFN is a two-layer fully connected neural network applied independently to each token’s representation.
+- 
