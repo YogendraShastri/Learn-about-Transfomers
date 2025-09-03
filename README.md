@@ -178,7 +178,36 @@ $$
 \text{Output} = A \cdot V
 $$
 
-## Feed Forward
-- The FFN comes after the attention mechanism and is responsible for transforming and enriching the contextual embeddings.
-- The FFN is a two-layer fully connected neural network applied independently to each token’s representation.
-- 
+```python
+           ┌───────────────┐
+Input X →  │  Q, K, V Proj │  → Q, K, V
+           └───────────────┘
+                  │
+                  ▼
+         Compute QKᵀ similarities
+                  │
+        Divide by √dₖ for scaling
+                  │
+           Apply softmax → Attention weights
+                  │
+       Multiply weights by V → Contextual Output
+
+```
+
+## Feed Forward Network
+- The **FFN** comes after the attention mechanism and is responsible for transforming and enriching the contextual embeddings.
+- A **feed-forward** layer is like a mini neural network inside the Transformer, It looks at each token (word) in your sentence independently and transforms it.
+- It has **two linear layers** (simple matrix multiplications) with a **non-linear activation** (like **ReLU** or **GELU**) in the middle.
+- FFN helps the model learn more complex patterns for each token, not just relationships between tokens (attention does that).
+- **"Key-value memory”** analogy:
+  - **Keys**: detect patterns in the token (like “verb”, “noun”, or context clues).
+  - **Values**: transform those patterns into useful info for predicting the next word or understanding meaning.
+- After FFN, each token is smarter and more meaningful for the next steps in the Transformer.
+
+<div align='center'>
+<img width="500" height="330" alt="image" src="https://github.com/user-attachments/assets/0ea60bf7-7237-417d-8be2-36517fc868b4" />
+</div>
+
+## Summarize the whole Process
+
+  
